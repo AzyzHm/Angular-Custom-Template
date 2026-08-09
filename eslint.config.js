@@ -1,24 +1,23 @@
 // @ts-check
 const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
-const angular = require('@angular-eslint/eslint-plugin');
-const angularTemplate = require('@angular-eslint/eslint-plugin-template');
-const angularTemplateParser = require('@angular-eslint/template-parser');
+const angular = require('angular-eslint');
 const prettier = require('eslint-config-prettier');
 
 module.exports = tseslint.config(
+  {
+    ignores: ['dist/**', 'coverage/**', 'playwright-report/**', 'node_modules/**']
+  },
   {
     files: ['**/*.ts'],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
+      ...angular.configs.tsRecommended,
       prettier
     ],
-    plugins: {
-      '@angular-eslint': angular
-    },
-    processor: angular.processors?.['angular-file'] ?? undefined,
+    processor: angular.processInlineTemplates,
     rules: {
       '@angular-eslint/directive-selector': [
         'error',
@@ -35,19 +34,12 @@ module.exports = tseslint.config(
   },
   {
     files: ['**/*.html'],
-    extends: [...angularTemplate.configs?.recommended ?? []],
-    languageOptions: {
-      parser: angularTemplateParser
-    },
-    rules: {}
+    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility]
   },
   {
     files: ['tests/**/*.ts'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off'
     }
-  },
-  {
-    ignores: ['dist/**', 'coverage/**', 'playwright-report/**', 'node_modules/**']
   }
 );
