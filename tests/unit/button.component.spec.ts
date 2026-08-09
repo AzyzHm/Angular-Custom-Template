@@ -5,31 +5,44 @@ import { ButtonComponent } from '@shared/components/button/button.component';
 
 describe('ButtonComponent', () => {
   it('renders projected content', async () => {
-    await render(ButtonComponent, { template: `<app-button>Click me</app-button>` });
+    await render(`<app-button>Click me</app-button>`, {
+      imports: [ButtonComponent]
+    });
 
     expect(screen.getByText('Click me')).toBeTruthy();
   });
 
   it('emits clicked when pressed', async () => {
-    const clicked = jest.fn();
-    await render(ButtonComponent, {
-      template: `<app-button (clicked)="onClicked($event)">Save</app-button>`,
-      componentProperties: { clicked } as never,
-      componentInputs: {},
-      declarations: []
+    const onClicked = jest.fn();
+
+    await render(`<app-button (clicked)="onClicked($event)">Save</app-button>`, {
+      imports: [ButtonComponent],
+      componentProperties: { onClicked }
     });
 
     const user = userEvent.setup();
     await user.click(screen.getByRole('button', { name: 'Save' }));
 
-    expect(screen.getByRole('button')).toBeEnabled();
+    expect(onClicked).toHaveBeenCalledTimes(1);
   });
 
   it('does not emit clicked when disabled', async () => {
-    await render(ButtonComponent, {
-      template: `<app-button [disabled]="true">Disabled</app-button>`
-    });
+    const onClicked = jest.fn();
 
-    expect(screen.getByRole('button', { name: 'Disabled' })).toBeDisabled();
+    await render(
+      `<app-button [disabled]="true" (clicked)="onClicked($event)">Disabled</app-button>`,
+      {
+        imports: [ButtonComponent],
+        componentProperties: { onClicked }
+      }
+    );
+
+    const button = screen.getByRole('button', { name: 'Disabled' });
+    expect(button).toBeDisabled();
+
+    const user = userEvent.setup();
+    await user.click(button);
+
+    expect(onClicked).not.toHaveBeenCalled();
   });
 });
