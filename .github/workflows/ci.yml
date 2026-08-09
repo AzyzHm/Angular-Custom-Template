@@ -33,7 +33,7 @@ jobs:
       - run: npm ci
       - run: npm run test:coverage
       - name: Upload coverage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-report
           path: coverage/
@@ -51,7 +51,7 @@ jobs:
       - run: npm ci
       - run: npm run build:prod
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist/
@@ -71,7 +71,7 @@ jobs:
       - run: npm run e2e
       - name: Upload Playwright report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report
           path: playwright-report/
