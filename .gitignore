@@ -1,0 +1,32 @@
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Coverage / test artifacts
+/coverage
+/playwright-report
+/test-results
+
+# IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Misc
+*.log
