@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      # Keep the Angular toolchain's minor/patch bumps together in one PR,
+      # since these packages need to move in lockstep.
+      angular:
+        patterns:
+          - "@angular/*"
+          - "@angular-devkit/*"
+          - "@angular-eslint/*"
+          - "angular-eslint"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Angular major versions must be upgraded deliberately via `ng update`,
+      # not piecemeal by Dependabot - a partial bump (e.g. build-angular
+      # alone) breaks the required lockstep versioning across the family.
+      - dependency-name: "@angular/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular-devkit/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular-eslint/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "angular-eslint"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
