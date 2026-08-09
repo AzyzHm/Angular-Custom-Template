@@ -37,4 +37,15 @@ Given this is a frontend template, common areas of concern include:
 - Insecure handling of tokens/credentials in HTTP interceptors
 - CI workflow permissions and secret handling
 
+## Known Issues
+
+- **`npm audit` shows dev-tooling-only findings on Angular 21.** After upgrading past the
+  Angular 19 CVEs, the remaining `npm audit` output (as of Angular 21.2.x) is limited to
+  packages inside the build/dev-server toolchain `image-size` (pulled in via the `less`
+  preprocessor, which this template doesn't use), `undici`/`webpack-dev-server` (local dev
+  server only), and `@modelcontextprotocol/sdk` (the `ng mcp` AI tooling feature). None of
+  these ship inside the production bundle. Clearing them fully requires upgrading to
+  Angular 22, which raises the floor to **TypeScript 6.0** and **Node 22+**, deliberately
+  deferred for now to avoid that breaking jump. Revisit when Angular 22 adoption is broader.
+
 Thank you for helping keep this project and its users safe.

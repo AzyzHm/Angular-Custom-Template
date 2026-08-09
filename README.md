@@ -1,8 +1,8 @@
 ![Angular Custom Template Banner](public/banner.png)
 
 <p align="center">
-  <a href="https://angular.dev"><img src="https://img.shields.io/badge/Angular-19-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular"></a>
-  <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"></a>
+  <a href="https://angular.dev"><img src="https://img.shields.io/badge/Angular-21-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular"></a>
+  <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"></a>
   <a href="https://jestjs.io"><img src="https://img.shields.io/badge/Jest-tested-C21325?style=for-the-badge&logo=jest&logoColor=white" alt="Jest"></a>
   <a href="https://playwright.dev"><img src="https://img.shields.io/badge/Playwright-e2e-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright"></a>
   <a href="https://github.com/features/actions"><img src="https://img.shields.io/badge/GitHub_Actions-CI-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions"></a>
@@ -15,7 +15,8 @@ components, signal-based state, test-covered, and CI-ready out of the box.
 
 ## Features
 
-- **Angular 19** with **standalone components** end-to-end (no `NgModule`s)
+- **Angular 21** with **standalone components** end-to-end (no `NgModule`s)
+- **Zoneless change detection**: no `zone.js` dependency, driven by signals, template events, and async-pipe emissions (Angular's default as of v21)
 - **Signals** for local component state, no external state management library
 - **Layered architecture**: `core` (services/guards/interceptors) → `shared` (reusable
   UI) → `features` (routed pages), plus a `layout` shell
