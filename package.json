@@ -44,7 +44,7 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/user-event": "^14.6.6",
     "@types/jest": "^30.0.0",
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.4.1",
     "angular-eslint": "^21.0.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^10.1.8",
