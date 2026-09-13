@@ -52,7 +52,7 @@
     "jest": "^30.5.1",
     "jest-environment-jsdom": "^30.5.1",
     "jest-preset-angular": "^17.0.0",
-    "lint-staged": "^17.4.1",
+    "lint-staged": "^17.5.1",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.0",
